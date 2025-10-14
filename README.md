@@ -5,19 +5,19 @@ Click, Predict, Trust: Clinician-in-the-Loop AI Segmentation for CT-Based Progno
 
 This repository contains the implementation, experimental results, and supplemental materials for our study on deep learning (DL)-based lung cancer segmentation and prognostic modeling. The work evaluates multiple DL architectures within the Knowledge-to-Action (KTA) framework, focusing on geometric accuracy, radiomics reproducibility, and survival prediction across multi-center CT datasets.
 
-**Data Acquisition and Preprocessing**
+**Data Acquisition and Preprocessing**   (Falahati)
 
 
-**Deep Learning Segmentation Models**
+**Deep Learning Segmentation Models** (Falahati)
 
 
-**Statistical Radiomics Analysis**
+**Statistical Radiomics Analysis** (Alizadeh)
 
 
-**Machine Learning Classification** 
+**Machine Learning Classification** (Pouria)
 
 
-**Physician-in-the-Loop Evaluation**
+**Physician-in-the-Loop Evaluation** (Alizadeh)
 
 
 
