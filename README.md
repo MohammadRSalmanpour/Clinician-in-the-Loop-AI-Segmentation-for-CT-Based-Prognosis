@@ -5,11 +5,15 @@ Click, Predict, Trust: Clinician-in-the-Loop AI Segmentation for CT-Based Progno
 
 This repository contains the implementation, experimental results, and supplemental materials for our study on deep learning (DL)-based lung cancer segmentation and prognostic modeling. The work evaluates multiple DL architectures within the Knowledge-to-Action (KTA) framework, focusing on geometric accuracy, radiomics reproducibility, and survival prediction across multi-center CT datasets.
 
-**Data Acquisition and Preprocessing**   (Falahati)
+**Data Acquisition and Preprocessing**   
 
+This study utilized a multi-center cohort comprising 999 patients from 12 public TCIA datasets. To ensure the highest quality ground truth, all lesion masks were manually segmented in consensus by two board-certified thoracic radiologists using 3D Slicer and subsequently verified by an independent clinical expert. A standardized preprocessing pipeline was implemented, as detailed in the provided preprocessing.py code. This pipeline performed several key operations: CT volumes were normalized using z-score scaling, and segmentation masks were binarized. Each volume was then resampled and resized to a uniform size of 64×64×64 voxels. A pivotal step involved tumor-centered analysis and cropping, which identified the largest connected component in the mask and extracted a region of interest (ROI) with a 5-voxel 3D margin. This process preserved critical peritumoral context while minimizing irrelevant background, creating standardized, tumor-focused inputs for the deep learning models.
 
-**Deep Learning Segmentation Models** (Falahati)
+**Deep Learning Segmentation Models** 
 
+Five distinct and complementary 3D deep learning architectures were benchmarked to comprehensively evaluate segmentation performance: 3D Attention U-Net, ResUNet, V-Net, ReconNet, and SAM-Med3D. These models were selected for their diverse inductive biases; for instance, 3D Attention U-Net enhances boundary focus through attention gates, ResUNet uses residual connections for stable training, V-Net is a proven volumetric segmenter, ReconNet offers a lightweight alternative, and SAM-Med3D represents a state-of-the-art foundation model. Each network was trained and validated on ten datasets (~72% training, ~18% validation) and their generalizability was rigorously tested on two independent external datasets.
+
+The preprocessed, cropped CT volumes served as the primary input to these models, enabling a direct and fair comparison of their ability to segment lung lesions from standardized, tumor-focused contexts. The models predicted the corresponding segmentation masks, which were then evaluated against the expert-verified ground truth using a standardized suite of metrics—Dice Similarity Coefficient (Dice), Intersection over Union (IoU), and Hausdorff Distance—computed via the AllMetrics library to ensure reproducibility and eliminate platform-dependent discrepancies. This rigorous benchmarking revealed V-Net as the top-performing model, achieving superior geometric accuracy (Dice: 0.83 ± 0.07) and establishing it as the most robust backbone for our clinician-in-the-loop pipeline.
 
 **Statistical Radiomics Analysis** (Alizadeh)
 
