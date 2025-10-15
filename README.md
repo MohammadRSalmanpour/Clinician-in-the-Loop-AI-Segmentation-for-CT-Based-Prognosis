@@ -34,7 +34,7 @@ train/
     └── ...
 ```
 
-# Important Notes:
+### Important Notes:
 
 - Both CT images and segmentation masks must have identical filenames
 
