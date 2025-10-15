@@ -9,7 +9,7 @@ This repository contains the implementation, experimental results, and supplemen
 
 This study utilized a multi-center cohort comprising 999 patients from 12 public TCIA datasets. To ensure the highest quality ground truth, all lesion masks were manually segmented in consensus by two board-certified thoracic radiologists using 3D Slicer and subsequently verified by an independent clinical expert. A standardized preprocessing pipeline was implemented, as detailed in the provided preprocessing.py code. This pipeline performed several key operations: CT volumes were normalized using z-score scaling, and segmentation masks were binarized. Each volume was then resampled and resized to a uniform size of 64×64×64 voxels. A pivotal step involved tumor-centered analysis and cropping, which identified the largest connected component in the mask and extracted a region of interest (ROI) with a 5-voxel 3D margin. This process preserved critical peritumoral context while minimizing irrelevant background, creating standardized, tumor-focused inputs for the deep learning models.
 
-## Preprocessing Requirements
+**Preprocessing Requirements**
 
 ### Installation
 
@@ -32,6 +32,7 @@ train/
     ├── image1.nii.gz
     ├── image2.nii.gz
     └── ...
+```
 
 # Important Notes:
 
