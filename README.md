@@ -9,6 +9,41 @@ This repository contains the implementation, experimental results, and supplemen
 
 This study utilized a multi-center cohort comprising 999 patients from 12 public TCIA datasets. To ensure the highest quality ground truth, all lesion masks were manually segmented in consensus by two board-certified thoracic radiologists using 3D Slicer and subsequently verified by an independent clinical expert. A standardized preprocessing pipeline was implemented, as detailed in the provided preprocessing.py code. This pipeline performed several key operations: CT volumes were normalized using z-score scaling, and segmentation masks were binarized. Each volume was then resampled and resized to a uniform size of 64×64×64 voxels. A pivotal step involved tumor-centered analysis and cropping, which identified the largest connected component in the mask and extracted a region of interest (ROI) with a 5-voxel 3D margin. This process preserved critical peritumoral context while minimizing irrelevant background, creating standardized, tumor-focused inputs for the deep learning models.
 
+## Preprocessing Requirements
+
+### Installation
+
+```bash
+pip install SimpleITK>=2.2.0 numpy>=1.21.0 pandas>=1.3.0 scipy>=1.7.0
+
+# Run the preprocessing pipeline:
+
+```bash
+python preprocessing.py
+
+# Input Data Structure:
+
+train/
+├── CT/                 # Original CT images (.nii.gz format)
+│   ├── image1.nii.gz
+│   ├── image2.nii.gz
+│   └── ...
+└── Seg/                # Corresponding segmentation masks (.nii.gz format)
+    ├── image1.nii.gz
+    ├── image2.nii.gz
+    └── ...
+
+# Important Notes:
+
+- Both CT images and segmentation masks must have identical filenames
+
+- All files must be in .nii.gz format
+
+- Ensure one-to-one correspondence between CT and mask files
+
+- The pipeline will automatically create all necessary output directories
+
+
 **Deep Learning Segmentation Models** 
 
 Five distinct and complementary 3D deep learning architectures were benchmarked to comprehensively evaluate segmentation performance: 3D Attention U-Net, ResUNet, V-Net, ReconNet, and SAM-Med3D. These models were selected for their diverse inductive biases; for instance, 3D Attention U-Net enhances boundary focus through attention gates, ResUNet uses residual connections for stable training, V-Net is a proven volumetric segmenter, ReconNet offers a lightweight alternative, and SAM-Med3D represents a state-of-the-art foundation model. Each network was trained and validated on ten datasets (~72% training, ~18% validation) and their generalizability was rigorously tested on two independent external datasets.
