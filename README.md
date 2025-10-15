@@ -15,7 +15,11 @@ Five distinct and complementary 3D deep learning architectures were benchmarked 
 
 The preprocessed, cropped CT volumes served as the primary input to these models, enabling a direct and fair comparison of their ability to segment lung lesions from standardized, tumor-focused contexts. The models predicted the corresponding segmentation masks, which were then evaluated against the expert-verified ground truth using a standardized suite of metrics—Dice Similarity Coefficient (Dice), Intersection over Union (IoU), and Hausdorff Distance—computed via the AllMetrics library to ensure reproducibility and eliminate platform-dependent discrepancies. This rigorous benchmarking revealed V-Net as the top-performing model, achieving superior geometric accuracy (Dice: 0.83 ± 0.07) and establishing it as the most robust backbone for our clinician-in-the-loop pipeline.
 
-**Statistical Radiomics Analysis** (Alizadeh)
+**Statistical Radiomics Analysis** 
+
+We conducted comprehensive radiomics analysis to validate the clinical reliability of our AI segmentations. A total of 497 IBSI-compliant radiomics features were extracted from both expert and DL-generated masks using PySERA/ViSERA. Feature stability was rigorously assessed through Spearman correlation, ICC, and MANOVA, confirming that our segmentation pipeline preserves prognostically critical information.
+
+Complementing the quantitative radiomics analysis, we conducted an extensive qualitative assessment involving six physicians to evaluate the clinical relevance and trustworthiness of AI-generated masks. Three physicians contributed to manual segmentation for ground truth creation, while three independent external physicians validated the AI-generated masks. The evaluation protocol, detailed in Supplemental File 16 - Survey for Statistical Analysis of qualitative assessments.docx, spanned seven critical domains through 21 carefully designed questions.
 
 
 **Machine Learning Classification** 
