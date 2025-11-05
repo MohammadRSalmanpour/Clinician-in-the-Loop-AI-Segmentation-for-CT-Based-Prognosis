@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 
 # https://github.com/BITEWKRER/Lung-Nodule-Segmentation-Framework.git
 
@@ -194,7 +194,7 @@ class Experiment_transformation():
 
         self.val_loader = None
         self.train_loader = None
-        self.test_loader = None
+        
 
         if args['run_mode'] == 'GPU':
             self.device = torch.device("cuda")
@@ -217,14 +217,12 @@ class Experiment_transformation():
                                                 seg_dir='/home/jhubadmin/.ssh/Projects/3D_Segmentation/Final_Data/step4_VAl/ROI_cropped/Cropped_seg',
                                                 transform=transforms.Compose([ToTensor()]))
 
-        test_transformed_dataset = CTScanDataset(ct_dir='/home/jhubadmin/.ssh/Projects/3D_Segmentation/Final_Data/step4_test/ROI_cropped/Cropped_CT',
-                                                 seg_dir='/home/jhubadmin/.ssh/Projects/3D_Segmentation/Final_Data/step4_test/ROI_cropped/Cropped_seg',
-                                                 transform=transforms.Compose([ToTensor()]))
+    
 
 
         self.train_loader = DataLoader(train_transformed_dataset, batch_size=1, shuffle=True, num_workers=2,pin_memory=True)
         self.val_loader = DataLoader(val_transformed_dataset, batch_size=1, shuffle=True, num_workers=2,pin_memory=True)
-        self.test_loader = DataLoader(test_transformed_dataset, batch_size=1, shuffle=False, num_workers=2,pin_memory=True)
+       
 
         print(f"Number of training samples: {len(train_transformed_dataset)}")
         print(f"Number of validating samples: {len(val_transformed_dataset)}")
@@ -476,77 +474,4 @@ class Experiment_transformation():
             #     out_path=dice_scores_path
             # )
 
-            # Testing
-            model.eval()
-            test_epoch_loss = 0
-            test_dice_scores = []
-            test_hd_scores = []
-            test_iou_scores = []
-
-            for step, data_test in enumerate(self.test_loader):
-                images = data_test["ct"].to(self.device)
-                seg = data_test["seg"].to(self.device)  # Ground truth segmentation
-                seg = (seg > 0.0).float()
-                batch_size = images.size(0)
-
-                with torch.no_grad():
-                    with autocast(enabled=True):
-                        prediction = model(x=images)
-
-                        # Resize prediction if necessary
-                        if prediction.shape[-2:] != seg.shape[-2:]:
-                            prediction = F.interpolate(prediction, size=seg.shape[-2:], mode='nearest')
-
-                        prediction_dice = torch.sigmoid(prediction)
-                        prediction_dice = (prediction_dice > 0.5).float()
-
-                        dice = DiceCoefficient(prediction_dice, seg)
-                        hd = hausdorff_distance(seg, prediction_dice)
-                        iou = iou_score(seg, prediction_dice)
-                        
-                        test_dice_scores.append(dice.cpu())
-                        test_hd_scores.append(hd)
-                        test_iou_scores.append(iou)
-
-                        # Calculate the combined BCE and Dice loss
-                        test_loss = combined_loss_function(prediction, seg)
-
-                test_epoch_loss += test_loss.item() * batch_size
-
-            avg_test_loss = test_epoch_loss / len(self.test_loader)
-            avg_test_dice = torch.mean(torch.stack(test_dice_scores)).item()
-            avg_test_hd = torch.mean(torch.stack(test_hd_scores)).item()
-            avg_test_iou = torch.mean(torch.stack(test_iou_scores)).item()
-            std_test_dice = torch.std(torch.stack(test_dice_scores)).item()
-
-            print(f'Test loss {avg_test_loss:.4f} '
-                    f'Test Dice {avg_test_dice:.4f} '
-                    f'Test HD {avg_test_hd:.4f} '
-                    f'Test IoU {avg_test_iou:.4f} '
-                    f'Test std {std_test_dice:.4f}')
-            # test_epoch_loss_list.append(avg_test_loss)
-            # test_dice_score_list.append(avg_test_dice)
-
-            # test_losses_path = os.path.join(epoch_folder, 'test_losses.png')
-            # self.plot_list(
-            #     value_list=test_epoch_loss_list,
-            #     title='Test loss in each epoch',
-            #     xlabel='Epoch',
-            #     ylabel='Loss Value',
-            #     out_path=test_losses_path
-            # )
-
-            # test_dice_scores_path = os.path.join(epoch_folder, 'test_dice_scores.png')
-            # self.plot_list(
-            #     value_list=test_dice_score_list,
-            #     title='Test Dice score in each epoch',
-            #     xlabel='Epoch',
-            #     ylabel='Dice Score',
-            #     out_path=test_dice_scores_path
-            # )
-
-        checkpoint_last = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'output5e-5', 'last.pth'))
-        torch.save(model.state_dict(), checkpoint_last)
-
-        total_time = time.time() - total_start
-        print(f"Training and testing model completed, total time: {total_time}.")
+            
