@@ -67,7 +67,7 @@ To handle the high dimensionality of radiomics data, 38 feature selection and em
 Results showed that Semi-Supervised Learning consistently outperformed Supervised Learning, with the LASSO–LightGBM–VNet pipeline achieving the best results (Accuracy = 0.88 ± 0.003, F1 = 0.83 ± 0.004, AUC = 0.76 ± 0.048). This analysis also compared DL- and expert-based features to evaluate reproducibility and clinical relevance, supported by physician-in-the-loop review for interpretability. Overall, this stage bridges DL segmentation, radiomics reproducibility, and survival prediction within the Knowledge-to-Action (KTA) framework—emphasizing reliability, adaptability, and clinical trust.
 
 
-**Physician-in-the-Loop Evaluation** (Alizadeh)
+**Physician-in-the-Loop Evaluation**
 
 
 
