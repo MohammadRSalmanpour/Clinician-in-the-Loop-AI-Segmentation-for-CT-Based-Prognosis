@@ -1,7 +1,7 @@
 # Clinician-in-the-Loop-AI-Segmentation-for-CT-Based-Prognosis
 Click, Predict, Trust: Clinician-in-the-Loop AI Segmentation for Lung Cancer CT-Based Prognosis within the Knowledge-to-Action Framework
 
-# Paper Co-authors
+**Paper Co-authors**
 
 Mohammad R. Salmanpour, Sonya Falahati, Amir Hossein Pouria, Amin Mousavi, Somayeh Sadat Mehrnia, Morteza Alizadeh, Arman Gorji, Zeinab Farsangi, Alireza Safarian, Mehdi Maghsudi, Carlos Uribe, Arman Rahmim, Ren Yuan  
 
