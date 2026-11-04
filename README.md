@@ -3,7 +3,7 @@ Click, Predict, Trust: Clinician-in-the-Loop AI Segmentation for Lung Cancer CT-
 
 **Paper Co-authors**
 
-Mohammad R. Salmanpour, Sonya Falahati, Amir Hossein Pouria, Amin Mousavi, Somayeh Sadat Mehrnia, Morteza Alizadeh, Arman Gorji, Zeinab Farsangi, Alireza Safarian, Mehdi Maghsudi, Carlos Uribe, Arman Rahmim, Ren Yuan  
+Mohammad R. Salmanpour (PHD), Sonya Falahati, Amir Hossein Pouria, Amin Mousavi, Somayeh Sadat Mehrnia (PHD), Morteza Alizadeh, Arman Gorji (MD), Zeinab Farsangi (MD), Alireza Safarian (MD), Mehdi Maghsudi (MD), Carlos Uribe (PHD), Arman Rahmim (PHD), Ren Yuan (MD) 
 
 **Project Overview**
 
