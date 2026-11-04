@@ -1,5 +1,9 @@
 # Clinician-in-the-Loop-AI-Segmentation-for-CT-Based-Prognosis
-Click, Predict, Trust: Clinician-in-the-Loop AI Segmentation for CT-Based Prognosis within the Knowledge-to-Action Framework
+Click, Predict, Trust: Clinician-in-the-Loop AI Segmentation for Lung Cancer CT-Based Prognosis within the Knowledge-to-Action Framework
+
+# Paper Co-authors
+
+Mohammad R. Salmanpour, Sonya Falahati, Amir Hossein Pouria, Amin Mousavi, Somayeh Sadat Mehrnia, Morteza Alizadeh, Arman Gorji, Zeinab Farsangi, Alireza Safarian, Mehdi Maghsudi, Carlos Uribe, Arman Rahmim, Ren Yuan  
 
 **Project Overview**
 
@@ -65,6 +69,12 @@ This module focuses on prognostic modeling using radiomic features derived from 
 To handle the high dimensionality of radiomics data, 38 feature selection and embedding methods (e.g., ANOVA F-test, LASSO, PCA, UMAP) were combined with 24 classifiers, including Logistic Regression, Random Forest, XGBoost, LightGBM, SVMs, and ensemble models (Stacking, Voting, Bagging). Model performance was assessed via Accuracy, Precision, Recall, F1-score, Specificity, and ROC-AUC, averaged across folds and test sets.
 
 Results showed that Semi-Supervised Learning consistently outperformed Supervised Learning, with the LASSO–LightGBM–VNet pipeline achieving the best results (Accuracy = 0.88 ± 0.003, F1 = 0.83 ± 0.004, AUC = 0.76 ± 0.048). This analysis also compared DL- and expert-based features to evaluate reproducibility and clinical relevance, supported by physician-in-the-loop review for interpretability. Overall, this stage bridges DL segmentation, radiomics reproducibility, and survival prediction within the Knowledge-to-Action (KTA) framework—emphasizing reliability, adaptability, and clinical trust.
+
+Authors:
+Mohammad R. Salmanpour (PHD): Team Lead
+Sonya Falahati: Segmentation Model development
+Amir Hossein Pouria: Classification Model Development
+Morteza Alizadeh: Statistical Analysis
 
 
 **Physician-in-the-Loop Evaluation**
